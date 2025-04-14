@@ -1,29 +1,25 @@
 import { Link, Outlet } from 'react-router-dom'
+import Sidebar from './components/sidebar/Sidebar'
 import './App.css'
 
 function App() {
+
+  const url = "https://fakestoreapi.com/products"
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Request to ${response.url} failed: HTTP ${response.status} : ${response.statusText}`);
+      };
+      return response.json();
+    })
+    .then((response) => {
+      console.log(response);
+    });
+
   return (
     <div id='app'>
-      <div id="sidebar">
-        <h1>the Shop</h1>
-        <form id="search" role="search">
-          <input
-            id="search-input"
-            placeholder="Search..."
-          />
-          <button type="submit">Find</button>
-        </form>
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to='shop'>Shop</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <Sidebar />
 
       <div id="outlet-container">
         <Outlet />
