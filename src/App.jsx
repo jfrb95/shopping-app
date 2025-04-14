@@ -24,7 +24,10 @@ function App() {
           </ul>
         </nav>
       </div>
-      <Outlet />
+
+      <div id="outlet-container">
+        <Outlet />
+      </div>
     </>
   )
 }
