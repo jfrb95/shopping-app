@@ -20,6 +20,9 @@ export default function Sidebar() {
           <li>
             <Link to='shop'>Shop</Link>
           </li>
+          <li>
+            <Link to='aeweqe'>Error</Link>
+          </li>
         </ul>
       </nav>
     </div>
