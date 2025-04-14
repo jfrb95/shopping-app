@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import './App.css'
 
 function App() {
@@ -16,14 +16,15 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to>Home</Link>
+              <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to>Shop</Link>
+              <Link to='shop'>Shop</Link>
             </li>
           </ul>
         </nav>
       </div>
+      <Outlet />
     </>
   )
 }
