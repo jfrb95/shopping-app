@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
   return (
-    <>
+    <div id='app'>
       <div id="sidebar">
         <h1>the Shop</h1>
         <form id="search" role="search">
@@ -28,7 +28,7 @@ function App() {
       <div id="outlet-container">
         <Outlet />
       </div>
-    </>
+    </div>
   )
 }
 
