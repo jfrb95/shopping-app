@@ -3,7 +3,7 @@ import { useEffect } from "react";
 export default function useFakeStoreFetch() {
 
   useEffect(() => {
-    const url = "https://fakestoreapi.com/products"
+    const url = "https://fakestoreapi.com/products";
 
     fetch(url)
       .then(response => {
