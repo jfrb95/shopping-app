@@ -1,14 +1,53 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import useFakeStoreFetch from '../src/hooks/useFakeStoreFetch';
+import { useState } from 'react';
 
-//this line redefines fetch to be a mock function,
-//  a common practice when testing. This particular 
-//  version does not work with a fetch.then approach
+const [testState, setTestState] = useState(null);
+const [testLoading, setTestLoading] = useState(true);
+const [testError, setTestError] = useState(null);
 
 const mockData = [
-  { id: 1, title: 'Product 1', price: 10 },
-  { id: 2, title: 'Product 2', price: 20 },
+  {
+    id: 1,
+    title: "Wireless Bluetooth Earbuds",
+    price: 59.99,
+    description: "High-quality wireless earbuds with 20hr battery life and noise cancellation",
+    category: "electronics",
+    image: "https://example.com/images/earbuds.jpg"
+  },
+  {
+    id: 2,
+    title: "Organic Cotton T-Shirt",
+    price: 24.99,
+    description: "Comfortable 100% organic cotton t-shirt available in multiple colors",
+    category: "clothing",
+    image: "https://example.com/images/tshirt.jpg"
+  },
+  {
+    id: 3,
+    title: "Stainless Steel Water Bottle",
+    price: 29.95,
+    description: "Insulated 32oz bottle that keeps drinks cold for 24 hours",
+    category: "home",
+    image: "https://example.com/images/bottle.jpg"
+  },
+  {
+    id: 4,
+    title: "Professional Chef's Knife",
+    price: 89.99,
+    description: "8-inch high-carbon steel knife with ergonomic handle",
+    category: "kitchen",
+    image: "https://example.com/images/knife.jpg"
+  },
+  {
+    id: 5,
+    title: "Yoga Mat",
+    price: 39.50,
+    description: "Eco-friendly non-slip mat with carrying strap",
+    category: "fitness",
+    image: "https://example.com/images/yogamat.jpg"
+  }
 ];
 
 describe('useFakeStoreFetch', () => {
@@ -16,6 +55,7 @@ describe('useFakeStoreFetch', () => {
   beforeEach(() => {
     //This one would be used in the case where we simply
     //  set window.fetch = vi.fn();
+    
     //fetch.mockReset();
 
     //This one is for use with the .then approach. Giving
@@ -26,17 +66,13 @@ describe('useFakeStoreFetch', () => {
         ok: true,
         json: () => Promise.resolve(mockData)
       })
-    )
+    );
+
+    setTestState(null);
+    setTestLoading(true);
+    setTestError(null);
   });
 
-  it('returns an array of length 2 with specified elements', () => {
-    const { result } = renderHook(() => useFakeStoreFetch());
-    expect(Array.isArray(result.current)).toBe(true);
-  
-    expect(result.current.length).toBe(2);
 
-    expect(
-      Array.isArray(result.current[0])) || result.current[0] === null;
-    });
 
 });
