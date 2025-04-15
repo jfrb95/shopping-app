@@ -2,6 +2,9 @@ import { useEffect } from "react";
 
 export default function useFakeStoreFetch() {
 
+  let data = null;
+  let error = null;
+
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
 
@@ -13,9 +16,10 @@ export default function useFakeStoreFetch() {
         return response.json();
       })
       .then((response) => {
-        console.log(response);
-        //want to store the data in a local object
+        data = response;
       });
   }, []);
   
+  return [data, error];
+
 }
