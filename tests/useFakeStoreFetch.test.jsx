@@ -7,6 +7,8 @@ const [testState, setTestState] = useState(null);
 const [testLoading, setTestLoading] = useState(true);
 const [testError, setTestError] = useState(null);
 
+const stateSetters = [setTestState, setTestLoading, setTestError];
+
 const mockData = [
   {
     id: 1,
@@ -73,6 +75,13 @@ describe('useFakeStoreFetch', () => {
     setTestError(null);
   });
 
+  test('exactly one of state and error is null', () => {
+    renderHook(() => useFakeStoreFetch(...stateSetters));
 
+    expect(
+      testState === null && testError !== null ||
+      testState !== null && testError === null
+    ).toBe(true);
+  })
 
 });

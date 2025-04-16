@@ -2,9 +2,6 @@ import { useEffect } from "react";
 
 export default function useFakeStoreFetch(setState, setLoading, setError) {
 
-  let data = null;
-  let error = null;
-
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
 
@@ -16,7 +13,8 @@ export default function useFakeStoreFetch(setState, setLoading, setError) {
           return response.json();
         })
         .then((response) => {
-          data = response;
+          setState(response);
+          setLoading(false);
         });
     }, []);
 }
